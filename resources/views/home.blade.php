@@ -24,38 +24,55 @@
         
     </section>
 
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-theme="dark">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-            <div class="modal-body">
-                <p>Bienvenue <span class="fw-bold">{{ auth()->user()->login }}</span>, au CTF de la journée Star Wars 42Perpignan !</p>
-                <p>Vous êtes R2-D2 et devez libérer Han Solo et Luke Skywalker de la benne à ordures de l'étoile de la mort.</p>
-                <p>Pour ce faire vous devez trouver une clé de sécurité découper en 4 morceaux et cachées dans le système de securité.</p>
-                <p>Chaque morceau se trouve dans une des 4 épreuves sous la forme d'un flag de cette forme <span class="fw-bold text-warning">"flag{texte}"</span>.</p>
-                <p>Chaque épreuve est indépendante et représente un des grands domaines des CTFs.</p>
-                <p>Pour valider une épreuve inscrivez le flag correspondant dans le champ prévu à cet effet.</p>
+    @notInit
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-theme="dark">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <p>Bienvenue <span class="fw-bold">{{ auth()->user()->login }}</span>, au CTF de la journée Star Wars 42Perpignan !</p>
+                    <p>Vous êtes R2-D2 et devez libérer Han Solo et Luke Skywalker de la benne à ordures de l'étoile de la mort.</p>
+                    <p>Pour ce faire vous devez trouver une clé de sécurité découper en 4 morceaux et cachées dans le système de securité.</p>
+                    <p>Chaque morceau se trouve dans une des 4 épreuves sous la forme d'un flag de cette forme <span class="fw-bold text-warning">"flag{texte}"</span>.</p>
+                    <p>Chaque épreuve est indépendante et représente un des grands domaines des CTFs.</p>
+                    <p>Pour valider une épreuve inscrivez le flag correspondant dans le champ prévu à cet effet.</p>
 
-                <p class="fw-bold">N'hésitez pas à contacter un des organisateurs de ce CTF pour toute question et que la force soit avec vous !</p>
+                    <p class="fw-bold">N'hésitez pas à contacter un des organisateurs de ce CTF pour toute question et que la force soit avec vous !</p>
 
-                <p class="mb-1">Crédits :</p>
-                <p>
-                    Roméo Rodor - rrodor <br>
-                    Stéphane Alcaraz - salcaraz <br>
-                    David BOYER - daboyer <br>
-                    Adrien Audeber  - aaudeber
-                </p>
-               
+                    <p class="mb-1">Crédits :</p>
+                    <p>
+                        Roméo Rodor - rrodor <br>
+                        Stéphane Alcaraz - salcaraz <br>
+                        David BOYER - daboyer <br>
+                        Adrien Audeber  - aaudeber
+                    </p>
+                
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Commencer l'aventure</button>
-            </div>
+                </div>
+                    <div class="modal-footer">
+                        <form action="{{ route("ctf_post") }}" method="POST">
+                            @csrf
+                            @method("POST")
+                        <button type="submit" class="btn btn-success">Commencer l'aventure</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @endnotInit
     
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+@notInit
+    <script>
+        setTimeout(() => {
+            const modal = new bootstrap.Modal(document.getElementById('modal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }, 10 * 1000);
+    </script>
+@endnotInit
 <script>
     const notyf = new Notyf({
         duration: 3000,
@@ -64,14 +81,6 @@
             y: 'top',
         }
     });
-
-    setTimeout(() => {
-        const modal = new bootstrap.Modal(document.getElementById('modal'), {
-            backdrop: 'static',
-            keyboard: false
-        });
-        modal.show();
-    }, 10 * 1000);
 </script>
 @if($errors->any())
     @foreach($errors->all() as $error)

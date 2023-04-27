@@ -48,7 +48,7 @@ class Auth extends Controller
                     auth()->login($auth["user"]);
                     return redirect()->route("home")->with("success", "Votre compte a bien été créé !");
                 }
-                return redirect()->route("auth_view", ["type" => "login"])->with("error", "Ce compte existe déjà !");
+                return redirect()->route("auth_view", ["type" => "login"])->with("error", $auth["message"]);
                 break;
             }
         }

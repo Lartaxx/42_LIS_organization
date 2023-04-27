@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+
+// Custom models
+use App\Models\Flags;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::if("notInit", function() {
+            $userFlags = Flags::where("user_id", auth()->user()->id)->first();
+            return auth()->check() || is_null($userFlags) || $userFlags->flag_init === 0;
+        });
     }
 }
