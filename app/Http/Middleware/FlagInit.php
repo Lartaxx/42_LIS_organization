@@ -20,9 +20,12 @@ class FlagInit
     public function handle(Request $request, Closure $next)
     {
         $userFlags = Flags::where("user_id", auth()->user()->id)->first();
-        if (is_null($userFlags) || $userFlags->flag_init === 0) {
+        if (is_null($userFlags)) {
             return $next($request);
         }
-        return redirect()->route("profile");
+        else if (!is_null($userFlags) && $userFlags->flags_init === 0) {
+            return $next($request);
+        }
+        return abort(403, "Vous avez déjà initialisé votre aventure !");
     }
 }

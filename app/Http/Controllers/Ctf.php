@@ -40,4 +40,24 @@ class Ctf extends Controller
         }
         return redirect()->route("profile")->with("error", "Vous avez déjà initialisé votre aventure !");
     }
+
+    protected function ctf_flag(Request $request, $flag) {
+        $request->validate([
+            "answer" => "required"
+        ]);
+        $datas = $request->all();
+        $userFlags = Flags::where("user_id", auth()->user()->id)->first();
+        if (is_null($userFlags)) {
+            return redirect()->route("profile")->with("error", "Vous n'avez pas initialisé votre aventure !");
+        }
+        if ($userFlags->$flag === 1) {
+            return redirect()->route("flags")->with("error", "Vous avez déjà validé ce flag !");
+        }
+        if ($datas["answer"] === env(strtoupper($flag))) {
+            $userFlags->$flag = 1;
+            $userFlags->save();
+            return redirect()->route("flags")->with("success", "Bravo, vous avez validé le flag $flag !");
+        }
+        return redirect()->route("flags")->with("error", "Mauvaise réponse !");
+    }
 }

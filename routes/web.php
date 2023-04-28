@@ -37,5 +37,6 @@ Route::group(["prefix" => "ctf", "middleware" => "auth"], function() {
     Route::get("/flags", [Ctf::class, "ctf_flags"])->name("flags");
 
     // Post routes
-    Route::post("/", [Ctf::class, "ctf_post"])->name("ctf_post");
+    Route::post("/", [Ctf::class, "ctf_post"])->name("ctf_post")->middleware("flagInit");
+    Route::post("/flag/{flag}", [Ctf::class, "ctf_flag"])->name("ctf_flag");
 });

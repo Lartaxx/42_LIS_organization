@@ -28,4 +28,62 @@ class Flags extends Model
         ->total_flags;
     
     }
+
+    public static function convertFlag($increment) {
+        switch ($increment) {
+            case "flag_one": {
+                return 0;
+                break;
+            }
+
+            case "flag_two": {
+                return 1;
+                break;
+            }
+
+            case "flag_three": {
+                return 2;
+                break;
+            }
+
+            case "flag_four": {
+                return 3;
+                break;
+            }
+
+            default: {
+                return false;
+                break;
+            }
+        }
+    }
+
+    public static function reConvertFlag($increment) {
+        switch ($increment) {
+            case 0: {
+                return "flag_one";
+                break;
+            }
+
+            case 1: {
+                return "flag_two";
+                break;
+            }
+
+            case 2: {
+                return "flag_three";
+                break;
+            }
+
+            case 3: {
+                return "flag_four";
+                break;
+            }
+
+            default: {
+                return "flag_init";
+                break;
+            }
+        }
+    }
 }

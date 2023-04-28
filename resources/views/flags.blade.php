@@ -29,7 +29,11 @@
         </div>
         <div class="d-flex justify-content-center align-items-center fade-4 ">
            @for ($i = 0; $i <= 3; $i++)
-            <button class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#modal{{ $i }}">📝 Challenge {{ $i + 1 }}</button>
+            @hasFlag(\App\Models\Flags::convertFlag(\App\Models\Flags::reConvertFlag($i)))
+                <button class="btn btn-success m-2">✅ Challenge {{ $i + 1 }} validé</button>
+            @else
+                <button class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#modal{{ $i }}">📝 Challenge {{ $i + 1 }}</button>
+            @endhasFlag
            @endfor
         </div>
     </div>    
@@ -39,13 +43,21 @@
     <div class="modal fade" id="modal{{ $i }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-theme="dark">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-            <div class="modal-body">
-                <p>Modal {{ $i + 1 }}</p>
-                <p>Titre {{ $modal[$i]["title"] }}</p>
-                <p>Description {{ $modal[$i]["desc"] }}</p>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{{ $modal[$i]["title"] }}</h5>
+                <button type="button" class="btn-close float-end text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+            <div class="modal-body">
+                <p>{{ $modal[$i]["desc"] }}</p>
+
+                <form action="{{ route("ctf_flag", ["flag" => \App\Models\Flags::reConvertFlag($i)]) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Réponse</label>
+                        <input type="text" class="form-control" name="answer" placeholder="Réponse du challenge n°{{ $i + 1 }}">
+                    </div>
+                    <button type="submit" class="btn btn-outline-success float-end">Valider</button>
+                </form>
                 </div>
             </div>
         </div>
