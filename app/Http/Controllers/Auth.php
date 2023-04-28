@@ -20,6 +20,15 @@ class Auth extends Controller
                 return view('register');
                 break;
             }
+
+            case "logout": {
+                $auth = $this->auth_post_logout();
+                if ($auth["error"] == false) {
+                    return redirect()->route("auth_view", ["type" => "login"])->with("success", $auth["message"]);
+                }
+                return redirect()->route("home")->with("error", $auth["message"]);
+                break;
+            }
         }
     }
 
@@ -78,5 +87,15 @@ class Auth extends Controller
         return ["error" => true, "message" => "Ce compte existe déjà !"];
        }
          return ["error" => true, "message" => "Les mots de passe ne correspondent pas !"];
+    }
+
+    protected function auth_post_logout() {
+        try {
+            session()->flush();
+            auth()->logout();
+            return ["error" => false, "message" => "À bientôt, héros de l'univers !"];
+        } catch (\Throwable $th) {
+            return ["error" => true, "message" => "Une erreur est survenue !"];
+        }
     }
 }
