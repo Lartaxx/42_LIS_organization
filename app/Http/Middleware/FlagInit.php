@@ -23,7 +23,7 @@ class FlagInit
         if (is_null($userFlags)) {
             return $next($request);
         }
-        else if (!is_null($userFlags) && $userFlags->flags_init === 0) {
+        else if (!is_null($userFlags) && $userFlags->flag_init === 0) {
             return $next($request);
         }
         return abort(403, "Vous avez déjà initialisé votre aventure !");

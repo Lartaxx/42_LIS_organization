@@ -31,12 +31,12 @@ class Ctf extends Controller
 
     protected function ctf_post() {
         $initFlag = Flags::where("user_id", auth()->user()->id)->first();
-        if (is_null($initFlag)) {
+        if (is_null($initFlag) || $initFlag->flag_init === 0) {
             Flags::create([
                 "user_id" => auth()->user()->id,
                 "flag_init" => true
             ]);
-            return redirect()->route("profile")->with("success", "Votre aventure commence maintenan, bonne chance !");
+            return redirect()->route("profile")->with("success", "Votre aventure commence maintenant, bonne chance !");
         }
         return redirect()->route("profile")->with("error", "Vous avez déjà initialisé votre aventure !");
     }
