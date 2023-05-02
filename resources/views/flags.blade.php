@@ -50,6 +50,12 @@
             <div class="modal-body">
                 <p>{{ $modal[$i]["desc"] }}</p>
 
+                @isset($modal[$i]["hints"])
+                    @foreach($modal[$i]["hints"] as $key => $hint)
+                        <p><span class="fw-bold">Indice n°{{ $key + 1 }} :</span> {{ $hint }}</p>
+                    @endforeach
+                @endisset
+
                 <form action="{{ route("ctf_flag", ["flag" => \App\Models\Flags::reConvertFlag($i)]) }}" method="POST">
                     @csrf
                     <div class="mb-3">

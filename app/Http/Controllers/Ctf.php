@@ -19,7 +19,7 @@ class Ctf extends Controller
 
     protected function ctf_flags() {
         $modal = [
-            ["title" => "Injection SQL", "desc" => "Injection SQL !"],
+            ["title" => "Cryptographie", "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?", "hints" => ["Le message a été chiffré 2 fois !", "Essayez de changer la base !"]],
             ["title" => "Failles XSS", "desc" => "Failles XSS !"],
             ["title" => "Stéganographie", "desc" => "Stéganographie !"],
             ["title" => "Faille de l'invocateur", "desc" => "Faille de l'invocateur"],
