@@ -51,7 +51,10 @@
                 Roméo Rodor - rrodor <br>
                 Stéphane Alcaraz - salcaraz <br>
                 David BOYER - daboyer <br>
-                Adrien Audeber  - aaudeber
+            </p>
+            <p class="mb-1">Les bannis à vie</p>
+            <p>
+                Adrien Audeber  - aaudeber <br>
             </p>
         
 
