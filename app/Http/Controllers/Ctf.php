@@ -21,7 +21,8 @@ class Ctf extends Controller
         $modal = [
             [
                 "title" => "Cryptographie", 
-                "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?", "hints" => [
+                "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?",
+                "hints" => [
                     "Le message a été chiffré 2 fois !", 
                     "Essayez de changer la base !"
                 ]
