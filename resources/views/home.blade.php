@@ -44,7 +44,7 @@
                         Stéphane Alcaraz - salcaraz <br>
                         David BOYER - daboyer <br>
                     </p>
-                    <p class="mb-1">Les bannis à vie</p>
+                    <p class="mb-1">Les bannis à vie :</p>
                     <p>
                         Adrien Audeber  - aaudeber <br>
                     </p>
