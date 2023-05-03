@@ -37,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
             $hasFlag = Flags::where("user_id", auth()->user()->id)->first();
             return auth()->check() && $hasFlag->$flagName === 1;
         });
+
+        Blade::if("finishAllFlags", function() {
+            return auth()->check() && intval(FLags::countValues()) === 4;
+        });
     }
 }

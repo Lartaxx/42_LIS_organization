@@ -52,7 +52,7 @@
 
                 @isset($modal[$i]["hints"])
                     @foreach($modal[$i]["hints"] as $key => $hint)
-                        <p><span class="fw-bold">Indice n°{{ $key + 1 }} :</span> {{ $hint }}</p>
+                        <p><span class="fw-bold">Indice n°{{ $key + 1 }} :</span> {!! $hint !!}</p>
                     @endforeach
                 @endisset
 
@@ -71,8 +71,32 @@
     </div>
 @endfor
 
+
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+@finishAllFlags
+<div class="modal fade" id="modalEnd" tabindex="-1" aria-hidden="true" data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Félicitations vous avez réussis le CTF !</h5>
+        </div>
+        <div class="modal-body">
+            <p>Luke et Han sont enfin libres et peuvent continuer leur infiltration de l'étoile de la mort!</p>
+            <p>N'hésitez pas à aider vos camarades si certains bloquent autour de vous</p>
+            <p>Si cette initiation vous a plue vous pouvez vous aussi rejoindre l'association Lost In The Shell qui participe à de vrais compétitions de CTF</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('modalEnd'), {
+        keyboard: false,
+        backdrop: 'static'
+    })
+    myModal.show()
+</script>
+@endfinishAllFlags
 <script>
     const notyf = new Notyf({
         duration: 3000,

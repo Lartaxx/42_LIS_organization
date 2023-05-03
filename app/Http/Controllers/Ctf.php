@@ -19,10 +19,30 @@ class Ctf extends Controller
 
     protected function ctf_flags() {
         $modal = [
-            ["title" => "Cryptographie", "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?", "hints" => ["Le message a été chiffré 2 fois !", "Essayez de changer la base !"]],
-            ["title" => "Failles XSS", "desc" => "Failles XSS !"],
-            ["title" => "Stéganographie", "desc" => "Stéganographie !"],
-            ["title" => "Faille de l'invocateur", "desc" => "Faille de l'invocateur"],
+            [
+                "title" => "Cryptographie", 
+                "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?", "hints" => [
+                    "Le message a été chiffré 2 fois !", 
+                    "Essayez de changer la base !"
+                ]
+            ],
+            [
+                "title" => "Rev", 
+                "desc" => "Vous venez de trouver un fichier exécutable concu par les ingénieurs de l'Empire, il semble contenir un flag mais il manque le code source afin d'en extraire les informations. Comment les obtenirs ?",
+                "hints" => [
+                    "<a href='https://file.io/DVMNcDvBnmdv'>yatilunflag</a>",
+                    "Connaisez vous la commande 'strings' ?",
+                    "L'utilisation de 'grep' pour trouver la bonne ligne pourrait vous aider !"
+                ]
+            ],
+            [
+                "title" => "Stéganographie", 
+                "desc" => "Stéganographie !"
+            ],
+            [
+                "title" => "Faille de l'invocateur", 
+                "desc" => "Faille de l'invocateur"
+            ],
         ];
         $initialScore = FLags::countValues();
         $score = FLags::countValues() / 4 * 100;
