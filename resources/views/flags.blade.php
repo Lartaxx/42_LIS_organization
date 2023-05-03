@@ -58,6 +58,7 @@
 
                 <form action="{{ route("ctf_flag", ["flag" => \App\Models\Flags::reConvertFlag($i)]) }}" method="POST">
                     @csrf
+                    @method("POST")
                     <div class="mb-3">
                         <label class="form-label">Réponse</label>
                         <input type="text" class="form-control" name="answer" placeholder="Réponse du challenge n°{{ $i + 1 }}">
