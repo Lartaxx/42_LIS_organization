@@ -18,12 +18,14 @@ class Flags extends Model
         "flag_one",
         "flag_two",
         "flag_three",
-        "flag_four"
+        "flag_four",
+        "flag_five",
+        "flag_six"
     ];
 
     public static function countValues() {
         return self::where("user_id", auth()->user()->id)
-        ->select(DB::raw("SUM(flag_one + flag_two + flag_three + flag_four) as total_flags"))
+        ->select(DB::raw("SUM(flag_one + flag_two + flag_three + flag_four + flag_five + flag_six) as total_flags"))
         ->first()
         ->total_flags;
     
@@ -49,6 +51,14 @@ class Flags extends Model
             case "flag_four": {
                 return 3;
                 break;
+            }
+
+            case "flag_five": {
+                return 4;
+            }
+
+            case "flag_six": {
+                return 5;
             }
 
             default: {
@@ -77,6 +87,16 @@ class Flags extends Model
 
             case 3: {
                 return "flag_four";
+                break;
+            }
+
+            case 4: {
+                return "flag_five";
+                break;
+            }
+
+            case 5: {
+                return "flag_six";
                 break;
             }
 

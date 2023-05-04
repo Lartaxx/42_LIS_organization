@@ -29,9 +29,8 @@ class Ctf extends Controller
             ],
             [
                 "title" => "Rev", 
-                "desc" => "Vous venez de trouver un fichier exécutable concu par les ingénieurs de l'Empire, il semble contenir un flag mais il manque le code source afin d'en extraire les informations. Comment les obtenirs ?",
+                "desc" => "Vous venez de trouver un fichier exécutable concu par les ingénieurs de l'Empire, il semble contenir un flag mais il manque le code source afin d'en extraire les informations. Comment les obtenirs ? <br> <a href='https://file.io/DVMNcDvBnmdv'>yatilunflag</a>",
                 "hints" => [
-                    "<a href='https://file.io/DVMNcDvBnmdv'>yatilunflag</a>",
                     "Connaisez vous la commande 'strings' ?",
                     "L'utilisation de 'grep' pour trouver la bonne ligne pourrait vous aider !"
                 ]
@@ -44,9 +43,17 @@ class Ctf extends Controller
                 "title" => "Faille de l'invocateur", 
                 "desc" => "Faille de l'invocateur"
             ],
+            [
+                "title" => "Faille de l'invocateur", 
+                "desc" => "Faille de l'invocateur"
+            ],
+            [
+                "title" => "Faille de l'invocateur", 
+                "desc" => "Faille de l'invocateur"
+            ],
         ];
         $initialScore = FLags::countValues();
-        $score = FLags::countValues() / 4 * 100;
+        $score = FLags::countValues() / 6 * 100;
         return view('flags', ["modal" => $modal, "score" => $score, "initialScore" => $initialScore]);
     }
 

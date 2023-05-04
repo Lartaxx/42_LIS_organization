@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if("finishAllFlags", function() {
-            return auth()->check() && intval(FLags::countValues()) === 4;
+            return auth()->check() && intval(FLags::countValues()) === 6;
         });
     }
 }

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->boolean("flag_two")->default(false);
             $table->boolean("flag_three")->default(false);
             $table->boolean("flag_four")->default(false);
+            $table->boolean("flag_five")->default(false);
+            $table->boolean("flag_six")->default(false);
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

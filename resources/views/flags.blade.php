@@ -24,11 +24,11 @@
         </div>
         <div class="d-flex justify-content-center align-items-center fade-3 mb-2">
             <div class="progress w-25">
-                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $score }}%;" aria-valuenow="{{ $score }}" aria-valuemin="0" aria-valuemax="100">{{ $initialScore }}/4</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $score }}%;" aria-valuenow="{{ $score }}" aria-valuemin="0" aria-valuemax="100">{{ $initialScore }}/6</div>
               </div>
         </div>
         <div class="d-flex justify-content-center align-items-center fade-4 ">
-           @for ($i = 0; $i <= 3; $i++)
+           @for ($i = 0; $i <= 5; $i++)
             @hasFlag(\App\Models\Flags::convertFlag(\App\Models\Flags::reConvertFlag($i)))
                 <button class="btn btn-success m-2">✅ Challenge {{ $i + 1 }} validé</button>
             @else
@@ -39,7 +39,7 @@
     </div>    
 
 
-@for ($i = 0; $i <= 3; $i++)
+@for ($i = 0; $i <= 5; $i++)
     <div class="modal fade" id="modal{{ $i }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-theme="dark">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -48,18 +48,19 @@
                 <button type="button" class="btn-close float-end text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>{{ $modal[$i]["desc"] }}</p>
+                <p>{!! $modal[$i]["desc"] !!}</p>
 
                 @isset($modal[$i]["hints"])
                     @foreach($modal[$i]["hints"] as $key => $hint)
-                        <p><span class="fw-bold">Indice n°{{ $key + 1 }} :</span> {!! $hint !!}</p>
+                        <span class="ms-1 fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $hint }}" data-bs-container="#modal{{ $i }}">Indice n°{{ $key + 1 }}
+                        </span>
                     @endforeach
                 @endisset
 
                 <form action="{{ route("ctf_flag", ["flag" => \App\Models\Flags::reConvertFlag($i)]) }}" method="POST">
                     @csrf
                     @method("POST")
-                    <div class="mb-3">
+                    <div class="mb-3 mt-2">
                         <label class="form-label">Réponse</label>
                         <input type="text" class="form-control" name="answer" placeholder="Réponse du challenge n°{{ $i + 1 }}">
                     </div>
@@ -70,7 +71,6 @@
         </div>
     </div>
 @endfor
-
 
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -89,12 +89,14 @@
         </div>
     </div>
 </div>
+
 <script>
     var myModal = new bootstrap.Modal(document.getElementById('modalEnd'), {
         keyboard: false,
         backdrop: 'static'
     })
-    myModal.show()
+    myModal.show();
+   
 </script>
 @endfinishAllFlags
 <script>
@@ -105,6 +107,8 @@
             y: 'top',
         }
     });
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 @if($errors->any())
     @foreach($errors->all() as $error)

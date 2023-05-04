@@ -32,7 +32,7 @@
                     <p>Bienvenue <span class="fw-bold">{{ auth()->user()->login }}</span>, au CTF de la journée Star Wars 42Perpignan !</p>
                     <p>Vous êtes R2-D2 et devez libérer Han Solo et Luke Skywalker de la benne à ordures de l'étoile de la mort.</p>
                     <p>Pour ce faire vous devez trouver une clé de sécurité découper en 4 morceaux et cachées dans le système de securité.</p>
-                    <p>Chaque morceau se trouve dans une des 4 épreuves sous la forme d'un flag de cette forme <span class="fw-bold text-warning">"flag{texte}"</span>.</p>
+                    <p>Chaque morceau se trouve dans une des 6 épreuves sous la forme d'un flag de cette forme <span class="fw-bold text-warning">"flag{texte}"</span>.</p>
                     <p>Chaque épreuve est indépendante et représente un des grands domaines des CTFs.</p>
                     <p>Pour valider une épreuve inscrivez le flag correspondant dans le champ prévu à cet effet.</p>
 
