@@ -114,11 +114,11 @@ class Ctf extends Controller
     protected function ctf_leaderboard() {
         $flags = FLags::orderBy("updated_at", "DESC")
                     ->where("flag_one", 1)
-                    ->where("flag_two", 1)
-                    ->where("flag_three", 1)
-                    ->where("flag_four", 1)
-                    ->where("flag_five", 1)
-                    ->where("flag_six", 1)
+                    ->orWhere("flag_two", 1)
+                    ->orWhere("flag_three", 1)
+                    ->orWhere("flag_four", 1)
+                    ->orWhere("flag_five", 1)
+                    ->orWhere("flag_six", 1)
                     ->get();
         return view('leaderboard', ["flags" => $flags]);
     }
