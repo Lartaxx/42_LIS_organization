@@ -20,7 +20,8 @@ class Ctf extends Controller
     protected function ctf_flags() {
         $modal = [
             [
-                "title" => "Cryptographie", 
+                "title" => "Cryptographie",
+                "difficulty" => "Facile", 
                 "desc" => "Vous venez d'intercepter un message secret de l'Empire : '77 72 66 68 76 66 67 62 61 63 72 65 72', comment le décoder ?",
                 "hints" => [
                     "Le message a été chiffré 2 fois !", 
@@ -28,7 +29,8 @@ class Ctf extends Controller
                 ]
             ],
             [
-                "title" => "Rev", 
+                "title" => "Rev",
+                "difficulty" => "Facile", 
                 "desc" => "Vous venez de trouver un fichier exécutable concu par les ingénieurs de l'Empire, il semble contenir un flag mais il manque le code source afin d'en extraire les informations. Comment les obtenirs ? <br> <a href='https://file.io/DVMNcDvBnmdv'>yatilunflag</a>",
                 "hints" => [
                     "Connaisez vous la commande 'strings' ?",
@@ -36,19 +38,34 @@ class Ctf extends Controller
                 ]
             ],
             [
-                "title" => "Stéganographie", 
-                "desc" => "Stéganographie !"
+                "title" => "WEB 1", 
+                "difficulty" => "Moyenne",
+                "desc" => "Voici un petit tutoriel sur les bases de hacking web..., visitez les dossiers du serveur pour obtenir le flag... <br> Lien : <a href='https://www.lostintheshell.fr/ctf-may4th/index.php' target='_blank'>CTF</a>",
+                "hints" => [
+                    "Un indice sur le nom du dossier que l'on cherche est caché dans l'image",
+                    "Des sites comme CrackStation permettent de décoder certaines formes de cryptage"
+                ]
             ],
             [
-                "title" => "Faille de l'invocateur", 
-                "desc" => "Faille de l'invocateur"
+                "title" => "WEB 2",
+                "difficulty" => "Moyenne",
+                "desc" => "Répondez à cette question pour obtenir le FLAG : <br> Quelle est la couleur du vaisseau noir de Darth Vador ? <br> Lien : <a href='https://www.lostintheshell.fr/ctf-may4th/ctf-tutoN2.php' target='_blank'>CTF</a>",
+                "hints" => [
+                    "Un clic droit / inspect sur les couleurs pourrait aider..."
+                ]
             ],
             [
-                "title" => "Faille de l'invocateur", 
-                "desc" => "Faille de l'invocateur"
+                "title" => "WEB 3", 
+                "difficulty" => "Moyenne",
+                "desc" => "Faites vous passer pour un droid ou un android... et obtenez le FLAG ! <br> Lien : <a href='https://www.lostintheshell.fr/ctf-may4th/ctf-tutoN3.php' target='_blank'>CTF</a>",
+                "hints" => [
+                    "Essayez de faire croire au navigateur que vous êtes sur un appareil android !",
+                    "Clic droit / inspect sur la page pourrait vous aider..."
+                ]
             ],
             [
-                "title" => "Faille de l'invocateur", 
+                "title" => "WEB 4",
+                "difficulty" => "Difficile",
                 "desc" => "Faille de l'invocateur"
             ],
         ];
@@ -83,9 +100,22 @@ class Ctf extends Controller
         }
         if ($datas["answer"] === env(strtoupper($flag))) {
             $userFlags->$flag = 1;
+            $userFlags->updated_at = now();
             $userFlags->save();
             return redirect()->route("flags")->with("success", "Bravo, vous avez validé le flag $flag !");
         }
         return redirect()->route("flags")->with("error", "Mauvaise réponse !");
+    }
+
+    protected function ctf_leaderboard() {
+        $flags = FLags::orderBy("updated_at", "DESC")
+                    ->where("flag_one", 1)
+                    ->where("flag_two", 1)
+                    ->where("flag_three", 1)
+                    ->where("flag_four", 1)
+                    ->where("flag_five", 1)
+                    ->where("flag_six", 1)
+                    ->get();
+        return view('leaderboard', ["flags" => $flags]);
     }
 }

@@ -49,6 +49,7 @@
             </div>
             <div class="modal-body">
                 <p>{!! $modal[$i]["desc"] !!}</p>
+                <p>Difficulté : <span class="fw-bold">{{ $modal[$i]["difficulty"] }}</span></p>
 
                 @isset($modal[$i]["hints"])
                     @foreach($modal[$i]["hints"] as $key => $hint)
@@ -71,6 +72,12 @@
         </div>
     </div>
 @endfor
+
+<div class="text-center fade-4">
+    <a href="{{ url()->previous() }}">
+        <button class="btn btn-outline-danger mt-2">Retour en arrière</button>
+    </a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

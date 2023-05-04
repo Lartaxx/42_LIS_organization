@@ -35,6 +35,7 @@ Route::group(["prefix" => "ctf", "middleware" => "auth"], function() {
     Route::get("/", [Ctf::class, "ctf_view"])->name("home")->middleware("flagInit");
     Route::get("/home", [Ctf::class, "ctf_profile"])->name("profile");
     Route::get("/flags", [Ctf::class, "ctf_flags"])->name("flags");
+    Route::get("/leaderboard", [Ctf::class, "ctf_leaderboard"])->name("leaderboard");
 
     // Post routes
     Route::post("/", [Ctf::class, "ctf_post"])->name("ctf_post")->middleware("flagInit");

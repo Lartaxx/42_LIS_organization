@@ -24,11 +24,12 @@
         <p>Découvrez le nouveau challenge <span class="fw-bold">CTF</span> de l'association Lost In The Shell de l'école 42Perpignan</p>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-        <button class="btn btn-outline-warning fade-4 mx-3" data-bs-toggle="modal" data-bs-target="#modal">Informations</button>
-        <a href="{{ route("auth_view", ["type" => "logout"]) }}"><button class="btn btn-outline-danger fade-4 mx-3" type="submit">Déconnexion</button></a>
+        <button class="btn btn-outline-warning fade-4 mx-2" data-bs-toggle="modal" data-bs-target="#modal">Informations</button>
+        <a href="{{ route("flags") }}"><button class="btn btn-outline-success w-auto fade-5">Progression</button></a>
+        <a href="{{ route("leaderboard") }}"><button class="btn btn-outline-primary w-auto ms-2 fade-5">Leaderboard</button></a>
+        <a href="{{ route("auth_view", ["type" => "logout"]) }}"><button class="btn btn-outline-danger fade-4 mx-2" type="submit">Déconnexion</button></a>
     </div>
-    <div class="d-flex justify-content-center align-items-center mt-3">
-        <a href="{{ route("flags") }}"><button class="btn btn-outline-success w-auto fade-5">Voir ma progression</button></a>
+    <div class="text-align-center mt-3">
     </div>
 </div>
 

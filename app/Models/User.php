@@ -18,4 +18,8 @@ class User extends Authenticatable
         "login",
         "password"
     ];
+
+    public static function getNicknameById($id) {
+        return self::where("id", $id)->first()->login;
+    }
 }
