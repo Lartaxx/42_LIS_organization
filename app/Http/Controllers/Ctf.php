@@ -66,7 +66,11 @@ class Ctf extends Controller
             [
                 "title" => "WEB 4",
                 "difficulty" => "Difficile",
-                "desc" => "Faille de l'invocateur"
+                "desc" => "Les cookies c'est bon, mangez-en !, mais attention à ne pas vous faire avoir... <br> Lien : <a href='https://www.lostintheshell.fr/ctf-may4th/ctf-tutoN4.php' target='_blank'>CTF</a>",
+                "hints" => [
+                    "Un cookie est un petit fichier stocké sur votre ordinateur, il peut être modifié !",
+                    "Clic droit / inspect sur la page pourrait vous aider..."
+                ]
             ],
         ];
         $initialScore = FLags::countValues();
